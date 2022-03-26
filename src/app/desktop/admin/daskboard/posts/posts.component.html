@@ -1,0 +1,4 @@
+<button (click)="getData()" class="btn btn-green my-3">Gửi</button>
+<ckeditor [(ngModel)]="dataCdk" [config]="config" [editor]="Editor" (ready)="onReady($event)"
+    data="<p>Hello, world!</p>">
+</ckeditor>

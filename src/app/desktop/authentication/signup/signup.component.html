@@ -1,0 +1,50 @@
+<div class="d-flex half">
+    <div class="bg" style="background-image: url('/assets/bg.jpg');"></div>
+    <div class="contents">
+
+        <div class="container padding-50">
+            <div class="row align-items-center justify-content-center">
+                <form #signUp="ngForm">
+                    <div class="col-md-12">
+                        <h3>Đăng ký <strong>Chat application</strong></h3>
+                        <p class="mb-4">Ứng dụng chat, kết nối mọi người</p>
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="name">Họ tên</label>
+                        <input (ngModelChange)="checkFormValid(signUp)" required name="name" ngModel type="text"
+                            class="form-control mt-3" placeholder="Nguyễn Văn A">
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="email">Tài khoản</label>
+                        <input (ngModelChange)="checkFormValid(signUp)" required name="email" ngModel type="text"
+                            class="form-control mt-3" placeholder="your-email@gmail.com">
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="password">Mật khẩu</label>
+                        <input autocomplete="on" (ngModelChange)="checkFormValid(signUp)" required ngModel
+                            name="password" type="password" class="form-control mt-3" placeholder="Your Password">
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="password">Giới tính</label>
+                        <select [(ngModel)]="sex" (ngModelChange)="checkFormValid(signUp)" name="sex" id="sex-user"
+                            class="form-select" aria-label=".form-select-lg example">
+                            <option value="-1" disabled>Vui lòng chọn giới tính</option>
+                            <option value="1">Nam</option>
+                            <option value="0">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12 mt-2" (click)="signup(signUp)">
+                        <span>Bạn đã có tài khoản? </span><b (click)="gotoSignIn()" class="color-green">Đăng nhập
+                            ngay</b>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <button (click)="signup(signUp)" id="button-signup" class="btn btn-block btn-green mt-3">
+                            Đăng ký</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>

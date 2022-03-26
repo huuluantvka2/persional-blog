@@ -1,0 +1,31 @@
+<div class="d-flex half">
+    <div class="bg" style="background-image: url('/assets/bg.jpg');"></div>
+    <div class="contents">
+
+        <div class="container padding-50">
+            <div class="row align-items-center justify-content-center">
+                <form #signInForm="ngForm">
+                    <div class="col-md-12">
+                        <h3>Đăng nhập <strong>Admin</strong></h3>
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="username"><b>Tài khoản</b></label>
+                        <input (ngModelChange)="checkFormValid(signInForm)" name="email" ngModel type="text"
+                            class="form-control mt-3" placeholder="your-email@gmail.com">
+                    </div>
+                    <div class="col-md-6 d-inline-block pr-md-3 mt-2">
+                        <label for="password"><b>Mật khẩu</b></label>
+                        <input autocomplete="on" (ngModelChange)="checkFormValid(signInForm)" ngModel name="password"
+                            type="password" class="form-control mt-3" placeholder="Your Password">
+                    </div>
+                    <div class="col-md-12 mt-3">
+                        <button id="button-login" (click)="login(signInForm)" class="btn btn-block btn-green mt-3">
+                            Đăng nhập</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>

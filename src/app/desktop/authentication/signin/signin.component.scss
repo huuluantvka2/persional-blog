@@ -1,0 +1,60 @@
+p {
+    color: darken(#ccc, 10%);
+    font-weight: 300;
+}
+.content {
+    padding: 7rem 0;
+}
+h2 {
+    font-size: 20px;
+}
+.padding-50 {
+    padding: 0 48px;
+}
+.half {
+    flex-direction: row-reverse;
+    &,
+    & .container > .row {
+        height: 100vh;
+        min-height: 700px;
+    }
+    .contents {
+        background: #f6f7fc;
+    }
+    .contents,
+    .bg {
+        width: 50%;
+    }
+    .bg {
+        background-size: cover;
+        background-position: center;
+    }
+    .btn {
+        height: 50px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin: 0 8px;
+    }
+    .color-green {
+        font-style: italic;
+        cursor: pointer;
+    }
+    .pr-md-3 {
+        padding-right: 12px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .half {
+        display: block !important;
+        .bg {
+            width: 100%;
+            height: 300px;
+        }
+        .contents {
+            width: 100%;
+        }
+        .pr-md-3 {
+            padding-right: 0 !important;
+        }
+    }
+}
