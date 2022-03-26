@@ -1,0 +1,2 @@
+# persional-blog
+angular + nodejs
