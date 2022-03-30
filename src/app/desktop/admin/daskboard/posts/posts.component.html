@@ -1,4 +1,29 @@
-<button (click)="getData()" class="btn btn-green my-3">Gửi</button>
+<!-- <button (click)="getData()" class="btn btn-green my-3">Gửi</button>
 <ckeditor [(ngModel)]="dataCdk" [config]="config" [editor]="Editor" (ready)="onReady($event)"
     data="<p>Hello, world!</p>">
-</ckeditor>
+</ckeditor> -->
+
+<div class="row pt-3">
+    <div class="col-md-9">
+        <h3 class="title">Danh sách bài viết hay</h3>
+    </div>
+    <div class="col-md-3 text-end">
+        <button class="btn btn-green">Thêm bài viết</button>
+    </div>
+    <div class="col-12 table-padding">
+        <table class="table table-post mt-3">
+            <thead>
+                <th style="border-radius: 4px 0 0 0;" width="5%">#</th>
+                <th width="15%">Ngày đăng</th>
+                <th width="20%">Ảnh đại diện</th>
+                <th width="40%">Tiêu đề</th>
+                <th style="border-radius: 0 4px 0 0;" width="20%">Chuyên mục</th>
+            </thead>
+            <tbody>
+                <tr *ngIf="!listPost.length" class="no-data">
+                    <td class="text-center" colspan="5">Chưa có dữ liệu</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

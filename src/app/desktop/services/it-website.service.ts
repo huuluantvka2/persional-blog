@@ -58,6 +58,45 @@ export class ItWebsiteService {
 
     })
   }
+  // ----------thêm xóa sửa category-----------
+  getAllCategorys() {
+    let url = `${this.URL_LOCAL}/categorys`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.get(url, httpOptions).toPromise()
+  }
+
+  addCategogys(json: any) {
+    let url = `${this.URL_LOCAL}/categorys`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(url, json, httpOptions).toPromise()
+  }
+  updateCaterogyById(_id: string, json) {
+    let url = `${this.URL_LOCAL}/categorys?_id=${_id}`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.patch(url, json, httpOptions).toPromise()
+  }
+  deleteCaterogyById(_id: string) {
+    let url = `${this.URL_LOCAL}/categorys?_id=${_id}`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.delete(url, httpOptions).toPromise()
+  }
+  // ----------thêm xóa sửa category-----------
   loginAdmin(email: string, password: string) {
     let url = `${this.URL_LOCAL}/authenticate/login-admin`
     const httpOptions = {
@@ -66,6 +105,27 @@ export class ItWebsiteService {
       })
     };
     return this.http.post(url, { email, password }, httpOptions).toPromise()
+  }
+  uploadImage(folder, file: any) {
+    let url = `${this.URL_LOCAL}/update-image`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.post(url, { folder, file }, httpOptions).toPromise()
+  }
+
+
+
+  deleteIamge(urlImage: string) {
+    let url = `${this.URL_LOCAL}/update-image?url=${urlImage}`
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return this.http.delete(url, httpOptions).toPromise()
   }
   //---------------------------CÁC HÀM TƯƠNG TÁC SERVER-----------------------//
   //---------------CÁC HÀM LOADING---------------------------//

@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { ItWebsiteService } from './desktop/services/it-website.service';
 import { LoadingModule } from './desktop/components/loading.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     LoadingModule,
     HttpClientModule,
+    CKEditorModule
   ],
   providers: [SocketClientService, ItWebsiteService],
   bootstrap: [AppComponent]

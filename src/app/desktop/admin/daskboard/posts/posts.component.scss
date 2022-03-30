@@ -1,3 +1,18 @@
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 500px;
+    width: 100%;
+}
+.table-padding {
+    padding: 8px 40px;
+}
+.table-post {
+    width: 100%;
+    thead {
+        th {
+            font-weight: 600;
+            padding: 8px;
+            color: var(--color-white);
+            background-color: #8049e3;
+        }
+    }
 }

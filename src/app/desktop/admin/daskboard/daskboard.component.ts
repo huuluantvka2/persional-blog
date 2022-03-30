@@ -17,4 +17,7 @@ export class DaskboardComponent implements OnInit {
   gotoPost() {
     this.router.navigate(['/admin/daskboard/posts'])
   }
+  gotoCategorys() {
+    this.router.navigate(['/admin/daskboard/categorys'])
+  }
 }

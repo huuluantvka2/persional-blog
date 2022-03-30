@@ -1,0 +1,32 @@
+.table-padding {
+    padding: 8px 40px;
+}
+.table-post {
+    width: 100%;
+    thead {
+        th {
+            font-weight: 600;
+            padding: 8px;
+            color: var(--color-white);
+            background-color: #8049e3;
+        }
+    }
+    tbody {
+        td {
+            max-width: 400px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .manipulation {
+            span {
+                display: inline-block;
+                margin-right: 16px;
+                cursor: pointer;
+                svg {
+                    width: 20px;
+                }
+            }
+        }
+    }
+}

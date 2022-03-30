@@ -1,29 +1,39 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import { ItWebsiteService } from 'src/app/desktop/services/it-website.service';
+import MyUploadAdapter from './MyUploadAdapter'
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss']
 })
+
 export class PostsComponent implements OnInit {
-  public Editor = ClassicEditor;
-  @ViewChild("myEditor", { static: false }) myEditor: any;
   dataCdk: string = ''
+  public Editor = DecoupledEditor
   public config = {
-    placeholder: 'Type the content here!'
+    placeholder: 'Type the content here!',
   }
-  constructor() { }
+  listPost: Array<any> = []
+  constructor(
+    private webService: ItWebsiteService
+  ) { }
 
   ngOnInit(): void {
   }
+  getData() {
+
+  }
   public onReady(editor) {
-    console.log(editor)
     editor.ui.getEditableElement().parentElement.insertBefore(
       editor.ui.view.toolbar.element,
       editor.ui.getEditableElement()
     );
+    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+      return new MyUploadAdapter(loader, 'post', this.webService);
+    };
   }
-  getData() {
-    console.log(this.dataCdk)
+  deleteImage() {
+    this.webService.deleteIamge('https://firebasestorage.googleapis.com/v0/b/persional-website.appspot.com/o/post%2F1648476653268?alt=media&token=1d0e0796-fc8b-466e-ba65-bdfefaac8bee').then(res => console.log(res))
   }
 }
