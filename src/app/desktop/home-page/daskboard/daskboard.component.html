@@ -1,0 +1,71 @@
+<div class="container-fluid pt-4">
+    <div *ngIf="listPost.length>=3" class="container container-newpost">
+        <div class="container-newpost-1" (click)="gotoPostDetail(listPost[0]._id)">
+            <img [src]="listPost[0].thumbnail" [alt]="listPost[0].title">
+            <div class="container-newpost-content">
+                <div class="content-category">
+                    <h4 style="background-color: #01AEF0;">{{listPost[0].category.name}}</h4>
+                </div>
+                <div class="content-title">
+                    <h1>{{listPost[0].title}}</h1>
+                </div>
+                <div class="content-date">
+                    <h6>Ngày đăng: {{listPost[0].created_at | date : 'dd/MM/YYYY'}}</h6>
+                </div>
+            </div>
+        </div>
+        <div (click)="gotoPostDetail(listPost[1]._id)" class="container-newpost-2">
+            <img [src]="listPost[1].thumbnail" [alt]="listPost[1].title">
+            <div class="container-newpost-content">
+                <div class="content-category">
+                    <h4>{{listPost[1].category.name}}</h4>
+                </div>
+                <div class="content-title">
+                    <h1>{{listPost[1].title}}</h1>
+                </div>
+                <div class="content-date">
+                    <h6>Ngày đăng: {{listPost[1].created_at | date : 'dd/MM/YYYY'}}</h6>
+                </div>
+            </div>
+        </div>
+        <div (click)="gotoPostDetail(listPost[2]._id)" class="container-newpost-3">
+            <img [src]="listPost[2].thumbnail" [alt]="listPost[2].title">
+            <div class="container-newpost-content">
+                <div class="content-category">
+                    <h4>{{listPost[2].category.name}}</h4>
+                </div>
+                <div class="content-title">
+                    <h1>{{listPost[2].title}}</h1>
+                </div>
+                <div class="content-date">
+                    <h6>Ngày đăng: {{listPost[2].created_at | date : 'dd/MM/YYYY'}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container container-list">
+        <div class="container-list-title">
+            <h2 class="text-center">Các bài viết mới nhất</h2>
+        </div>
+        <div class="row">
+            <div (click)="gotoPostDetail(item._id)" class="col-lg-4 col-md-6 col-sm-12 post-item"
+                *ngFor="let item of listPost;let i = index">
+                <div class="box-post-item">
+                    <div class="post-item-img">
+                        <img [src]="item.thumbnail" [alt]="item.title">
+                    </div>
+                    <div class="post-item-content">
+                        <h4 [ngStyle]="{'background-color':i%2 ===0?'#6610f2' : '#f5a62f'}" class="subtitle">
+                            {{item.category.name}}</h4>
+                        <h2 class="title max-2-lines">{{item.title}}</h2>
+                        <p class="description max-3-lines">{{item.description}}</p>
+                        <p class="date d-flex align-items-center"><span>Ngày đăng: {{item.created_at | date :
+                                'dd/MM/YYYY'}}</span>
+                        </p>
+                        <button class="view-immediate">Xem ngay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

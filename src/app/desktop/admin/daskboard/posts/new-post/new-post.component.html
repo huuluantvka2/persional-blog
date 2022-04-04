@@ -1,1 +1,51 @@
-<p>new-post works!</p>
+<form [formGroup]="PostForm" class="post-form">
+    <div class="row">
+        <div class="col-md-8 mt-2">
+            <h5 class="modal-title" id="exampleModalLabel">Thêm bài viết</h5>
+        </div>
+        <div class="col-md-4 text-end mt-3">
+            <button (click)="addPost()" [disabled]="PostForm.invalid" type="button" class="btn btn-green-hover">Thêm bài
+                viết</button>
+        </div>
+        <div class="col-md-12 post-form-thumbnail">
+            <img (click)="uploadThumbnail()" [src]="PostForm.value.thumbnail || '/assets/default/default-add.svg'"
+                alt="">
+            <input id="input-image-post" type="file" (change)="updateImage($event)">
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Tiêu đề bài viết</label>
+                        <input type="text" class="form-control mt-2" formControlName="title"
+                            placeholder="Vui lòng nhập tiêu đề">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Chuyên mục bài biết</label>
+                        <select class="form-control mt-2" formControlName="category">
+                            <option [value]="item._id" *ngFor="let item of listCategory">{{item.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6 mt-3">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Mô tả bài viết</label>
+                <textarea class="form-control mt-2" rows="4" formControlName="description"
+                    placeholder="Vui lòng nhập mô tả ngắn cho bài viết"></textarea>
+            </div>
+        </div>
+        <div class="col-md-12 mt-3">
+            <div class="form-group">
+                <label for="exampleInputPassword1">Nội dung</label>
+                <ckeditor class="mt-3" formControlName="content" [config]="config" [editor]="Editor"
+                    (ready)="onReady($event)">
+                </ckeditor>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItWebsiteService } from 'src/app/desktop/services/it-website.service';
-import MyUploadAdapter from './MyUploadAdapter'
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
@@ -9,31 +9,50 @@ import MyUploadAdapter from './MyUploadAdapter'
 })
 
 export class PostsComponent implements OnInit {
-  dataCdk: string = ''
-  public Editor = DecoupledEditor
-  public config = {
-    placeholder: 'Type the content here!',
-  }
   listPost: Array<any> = []
+  paging: any = { current_page: 1 }
+  listNavigation: Array<number> = []
   constructor(
-    private webService: ItWebsiteService
+    private webService: ItWebsiteService,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    if (!this.route.snapshot.params.page) this.router.navigate(['/admin/daskboard/posts'], { queryParams: { page: 1 } })
+    this.route.queryParams.pipe(filter(item => item.page)).subscribe(val => {
+      this.paging.current_page = +val.page
+      this.getData()
+    })
   }
   getData() {
-
+    this.webService.showLoading().then(() => {
+      this.webService.getAllPosts({}, '-content', 10, this.paging.current_page).then((res: any) => {
+        this.paging = res.paging
+        this.listPost = res.data
+        this.listNavigation = this.webService.renderNavigation(this.paging.current_page, this.paging.total, 10)
+      }).catch(err => { if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') }).finally(() => this.webService.hideLoading())
+    })
   }
-  public onReady(editor) {
-    editor.ui.getEditableElement().parentElement.insertBefore(
-      editor.ui.view.toolbar.element,
-      editor.ui.getEditableElement()
-    );
-    editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-      return new MyUploadAdapter(loader, 'post', this.webService);
-    };
+  gotoAdd() {
+    this.router.navigate(['/admin/daskboard/posts/add'])
   }
-  deleteImage() {
-    this.webService.deleteIamge('https://firebasestorage.googleapis.com/v0/b/persional-website.appspot.com/o/post%2F1648476653268?alt=media&token=1d0e0796-fc8b-466e-ba65-bdfefaac8bee').then(res => console.log(res))
+  trackByMyFunc(index, item) {
+    return item.name;
+  }
+  gotoPage(page, event) {
+    event.preventDefault()
+    if (page)
+      this.router.navigate(['/admin/daskboard/posts'], { queryParams: { page: page } })
+  }
+  gotoPrevOrNext(action: 'next' | 'prev') {
+    if (action == 'next') this.router.navigate(['/admin/daskboard/posts'], { queryParams: { page: this.paging.current_page + 1 } })
+    else this.router.navigate(['/admin/daskboard/posts'], { queryParams: { page: this.paging.current_page - 1 } })
+  }
+  gotoDetail(id) {
+    this.router.navigate(['/admin/daskboard/posts', id], { state: { current_page: this.paging.current_page } })
+  }
+  updatePost(item) {
+    this.webService.updatePostById(item._id, { active: !item.active }).then(res => item.active = !item.active).catch(err => { if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') })
   }
 }

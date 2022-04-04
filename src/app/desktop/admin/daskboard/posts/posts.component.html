@@ -8,22 +8,61 @@
         <h3 class="title">Danh sách bài viết hay</h3>
     </div>
     <div class="col-md-3 text-end">
-        <button class="btn btn-green">Thêm bài viết</button>
+        <button (click)="gotoAdd()" class="btn btn-green">Thêm bài viết</button>
     </div>
     <div class="col-12 table-padding">
-        <table class="table table-post mt-3">
+        <table class="table table-post mt-3 table-hover">
             <thead>
                 <th style="border-radius: 4px 0 0 0;" width="5%">#</th>
                 <th width="15%">Ngày đăng</th>
                 <th width="20%">Ảnh đại diện</th>
-                <th width="40%">Tiêu đề</th>
-                <th style="border-radius: 0 4px 0 0;" width="20%">Chuyên mục</th>
+                <th width="30%">Tiêu đề</th>
+                <th style="border-radius: 0 4px 0 0;" width="30%">Mô tả</th>
             </thead>
             <tbody>
                 <tr *ngIf="!listPost.length" class="no-data">
                     <td class="text-center" colspan="5">Chưa có dữ liệu</td>
                 </tr>
+                <tr (click)="gotoDetail(item._id)" *ngFor="let item of listPost;let i = index;trackBy : trackByMyFunc">
+                    <td width="5%">{{i+1}}</td>
+                    <td width="15%">
+                        <div>{{item.created_at | date : 'dd/MM/yyyy HH:mm'}}</div>
+                        <label (click)="$event.stopPropagation()" class="switch-button">
+                            <input [ngModel]="item.active" type="checkbox">
+                            <span (click)="updatePost(item)" class="switch-button-slider round"></span>
+                        </label>
+                    </td>
+                    <td width="20%">
+                        <img width="120px" height="100px" [src]="item.thumbnail" [alt]="item.title">
+                    </td>
+                    <td width="30%">
+                        <div class="max-5-lines">
+                            <b>{{item.title}}</b>
+                        </div>
+                    </td>
+                    <td width="30%">
+                        <div class="max-5-lines">{{item.description}}</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-end">
+                <li class="page-item" [ngClass]="{'disabled':paging.current_page == 1}">
+                    <button (click)="gotoPrevOrNext('prev')" class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">Trang trước</span>
+                    </button>
+                </li>
+                <li *ngFor="let item of listNavigation" class="page-item"
+                    [ngClass]="{'active': paging.current_page == item}"><a (click)="gotoPage(item,$event)"
+                        class="page-link">{{item ||
+                        '...'}}</a></li>
+                <li [ngClass]="{'disabled':paging.current_page == paging.total_page}" class="page-item">
+                    <button (click)="gotoPrevOrNext('next')" class="page-link" aria-label="Next">
+                        <span aria-hidden="true">Trang sau</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>

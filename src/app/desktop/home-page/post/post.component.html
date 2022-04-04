@@ -1,0 +1,13 @@
+<div class="container container-post">
+    <div class="row">
+        <div class="col-sm-12 col-md-9 mt-4" id="content-post"></div>
+        <div class="col-md-3 col-sm-none">
+            <h2 class="title-new mt-4">Bài viết mới nhất</h2>
+            <div class="list-post" *ngFor="let item of listPost">
+                <a (click)="$event.preventDefault();gotoPost(item._id)" [href]="'/post/'+item._id">
+                    <h6>{{item.title}}</h6>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

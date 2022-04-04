@@ -1,12 +1,9 @@
-:host ::ng-deep .ck-editor__editable_inline {
-    min-height: 500px;
-    width: 100%;
-}
 .table-padding {
     padding: 8px 40px;
 }
 .table-post {
     width: 100%;
+    cursor: pointer;
     thead {
         th {
             font-weight: 600;
@@ -14,5 +11,11 @@
             color: var(--color-white);
             background-color: #8049e3;
         }
+    }
+}
+.pagination {
+    .page-item.active .page-link {
+        background-color: var(--color-green);
+        border-color: var(--color-green);
     }
 }

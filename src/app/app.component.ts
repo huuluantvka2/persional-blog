@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItWebsiteService } from './desktop/services/it-website.service';
 import { SocketClientService } from './socket-client.service';

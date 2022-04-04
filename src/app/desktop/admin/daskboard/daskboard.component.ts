@@ -13,9 +13,10 @@ export class DaskboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.gotoPost()
   }
   gotoPost() {
-    this.router.navigate(['/admin/daskboard/posts'])
+    this.router.navigate(['/admin/daskboard/posts'], { queryParams: { page: 1 } })
   }
   gotoCategorys() {
     this.router.navigate(['/admin/daskboard/categorys'])

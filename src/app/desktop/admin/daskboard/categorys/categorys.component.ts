@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItWebsiteService } from 'src/app/desktop/services/it-website.service';
 import { Modal } from 'bootstrap';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-categorys',
   templateUrl: './categorys.component.html',
@@ -15,7 +16,8 @@ export class CategorysComponent implements OnInit {
   dataUpdate: any = {}
   dataDelete: any = {}
   constructor(
-    private webService: ItWebsiteService
+    private webService: ItWebsiteService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -23,10 +25,10 @@ export class CategorysComponent implements OnInit {
     this.modalupdateCategory = new Modal(document.getElementById('modalUpdateCategory'))
     this.modalDeleteCategory = new Modal(document.getElementById('modalDeleteCategory'))
     this.webService.showLoading().then(() => {
-      this.webService.getAllCategorys().then((res: any) => {
+      this.webService.getAllCategorys({}).then((res: any) => {
         this.listCategory = res.data
         console.log(this.listCategory)
-      }).catch(err => this.webService.alertMessage(err.message, 'error')).finally(() => this.webService.hideLoading())
+      }).catch(err => { { console.log(err.status == 401); if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') } }).finally(() => this.webService.hideLoading())
     })
 
   }
@@ -49,7 +51,7 @@ export class CategorysComponent implements OnInit {
       this.webService.addCategogys(this.dataAdd).then(res => {
         this.listCategory.unshift(res)
         this.closeModalAdd()
-      }).catch(err => this.webService.alertMessage(err.message, 'error')).finally(() => this.webService.hideLoading())
+      }).catch(err => { if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') }).finally(() => this.webService.hideLoading())
     })
   }
   showModalUpdate(item) {
@@ -65,7 +67,7 @@ export class CategorysComponent implements OnInit {
       this.webService.updateCaterogyById(this.dataUpdate._id, this.dataUpdate).then(res => {
         this.listCategory[this.listCategory.findIndex(item => item._id == this.dataUpdate._id)] = this.dataUpdate
         this.closeModalEdit()
-      }).catch(err => this.webService.alertMessage(err.message, 'error')).finally(() => this.webService.hideLoading())
+      }).catch(err => { { if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') } }).finally(() => this.webService.hideLoading())
     })
   }
   showModalDelete(item, index) {
@@ -81,7 +83,7 @@ export class CategorysComponent implements OnInit {
       this.webService.deleteCaterogyById(this.dataUpdate._id).then(res => {
         this.listCategory.splice(this.dataDelete.index, 1)
         this.closeModalDelete()
-      }).catch(err => this.webService.alertMessage(err.message, 'error')).finally(() => this.webService.hideLoading())
+      }).catch(err => { if (err.status == 401) this.router.navigate(['/admin']); this.webService.alertMessage(err.error?.message, 'error') }).finally(() => this.webService.hideLoading())
     })
   }
   trackByMyFunc(index, item) {

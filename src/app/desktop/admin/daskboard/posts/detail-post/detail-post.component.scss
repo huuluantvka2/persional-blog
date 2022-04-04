@@ -1,0 +1,21 @@
+.post-form {
+    &-thumbnail {
+        text-align: center;
+        img {
+            max-width: 200;
+            max-height: 200px;
+            cursor: pointer;
+        }
+        input {
+            display: none;
+        }
+    }
+    .btn-orange-hover {
+        margin-right: 8px;
+    }
+}
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 500px;
+    width: 100%;
+    border: 1px solid #4caf50 !important;
+}

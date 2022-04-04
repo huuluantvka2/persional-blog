@@ -1,73 +1,11 @@
-* {
-    background: black;
+header {
+    background: #171717;
     color: white;
 }
-header {
-    .header-top {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        .icon-social {
-            a {
-                margin-right: 8px;
-            }
-        }
-        &-left,
-        &-right {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            .navbar-toggler {
-                display: none;
-            }
-        }
-        .title {
-            font-weight: 500;
-            font-size: 2rem;
-        }
-    }
-    .custom-nav {
-        .nav-link {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        .nav-link.active {
-            color: white;
-        }
-        .dropdown-parent {
-            position: relative;
-            .dropdown-item-hover {
-                position: absolute;
-                display: none;
-                list-style-type: none;
-                background-color: black;
-                min-width: 200px;
-                border-radius: 8px;
-                padding: 0;
-                li {
-                    background-color: transparent;
-                    color: rgba(255, 255, 255, 0.6);
-                    padding: 8px 12px;
-                }
-            }
-            &:hover .dropdown-item-hover {
-                display: block;
-            }
-        }
-    }
+footer {
+    background: #0a0a0a;
+    color: white;
 }
-.icon-arrow {
-    width: 8px;
-    margin-left: 4px;
-}
-@media only screen and (max-width: 768px) {
-    .header-top-left {
-        display: none !important;
-    }
-    .header-top-right {
-        .navbar-toggler {
-            display: inline !important;
-        }
-        .title {
-            font-size: 1.5rem !important;
-            width: 100%;
-        }
-    }
+section {
+    min-height: 100vh;
 }

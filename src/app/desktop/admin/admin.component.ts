@@ -10,7 +10,7 @@ import { ItWebsiteService } from '../services/it-website.service';
 export class AdminComponent implements OnInit {
 
   constructor(
-    private itWeb: ItWebsiteService,
+    private webService: ItWebsiteService,
     private router: Router
   ) { }
 
@@ -18,10 +18,10 @@ export class AdminComponent implements OnInit {
     this.checkFormValid()
   }
   login(form) {
-    this.itWeb.showLoading().then(() => {
-      this.itWeb.loginAdmin(form.value.email, form.value.password).then(res => {
-        console.log(res)
-      }).catch(err => { console.error(err.error?.message) })
+    this.webService.showLoading().then(() => {
+      this.webService.loginAdmin(form.value.email, form.value.password).then(res => {
+        this.router.navigate(['/admin/daskboard'])
+      }).catch(err => { this.webService.alertMessage(err.error?.message, 'error') }).finally(() => this.webService.hideLoading())
     })
   }
 

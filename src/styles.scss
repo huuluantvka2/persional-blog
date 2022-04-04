@@ -8,6 +8,16 @@
     background: var(--color-green) !important;
     color: var(--color-white) !important;
 }
+.btn-green-hover {
+    border: 1px solid var(--color-green) !important;
+    color: var(--color-green) !important;
+    transition: 0.6s;
+}
+.btn-green-hover:hover {
+    background-color: var(--color-green) !important;
+    color: var(--color-white) !important;
+    transition: 0.6s;
+}
 .btn-orange {
     background: var(--color-orange) !important;
     color: var(--color-white) !important;
@@ -29,7 +39,93 @@
 .color-green {
     color: var(--color-green) !important;
 }
+//cdk editor
+.image_resized {
+    max-width: 95% !important;
+    border-radius: 8px;
+    img {
+        max-width: 95% !important;
+        border-radius: 8px;
+    }
+}
+.max-2-lines,
+.max-3-lines,
+.max-4-lines.max-5-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.max-2-lines {
+    -webkit-line-clamp: 2;
+}
+.max-3-lines {
+    -webkit-line-clamp: 3;
+}
+.max-4-lines {
+    -webkit-line-clamp: 4;
+}
+.max-5-lines {
+    -webkit-line-clamp: 5;
+}
+.w-100 {
+    width: 100%;
+}
+/* The switch-button - the box around the slider */
+.switch-button {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 24px;
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 
+    input:checked + &-slider {
+        background-color: #8bc34a;
+    }
+
+    input:focus + &-slider {
+        box-shadow: 0 0 1px #8bc34a;
+    }
+
+    input:checked + &-slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+    &-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        &:before {
+            position: absolute;
+            content: '';
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+        }
+    }
+    &-slider.round {
+        border-radius: 34px;
+    }
+    &-slider.round::before {
+        border-radius: 50%;
+    }
+}
 .success-alert,
 .warning-alert,
 .error-alert {
