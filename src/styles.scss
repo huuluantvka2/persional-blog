@@ -40,12 +40,13 @@
     color: var(--color-green) !important;
 }
 //cdk editor
-.image_resized {
+.image_resized,
+#content-post {
     max-width: 95% !important;
-    border-radius: 8px;
+    border-radius: 4px;
     img {
         max-width: 95% !important;
-        border-radius: 8px;
+        border-radius: 4px;
     }
 }
 .max-2-lines,

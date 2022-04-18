@@ -17,6 +17,10 @@ const routes: Routes = [
       {
         path: 'post',
         loadChildren: () => import('./post/post.module').then(m => m.PostModule)
+      },
+      {
+        path: 'list-post',
+        loadChildren: () => import('./list-post/list-post.module').then(m => m.ListPostModule)
       }
     ]
   }

@@ -22,14 +22,15 @@ export class PostComponent implements OnInit {
   getData() {
     document.getElementById('content-post').innerHTML = ''
     this.webService.showLoading().then(() => {
+      const id_post = this.route.snapshot.params._id
       Promise.all([
-        this.webService.getDetailPostByID(this.route.snapshot.params._id),
+        this.webService.getDetailPostByID(id_post),
         this.webService.getAllPosts({ active: { $eq: true } }, 'title', 10, 1)
       ]).then(([post, listPost]: any) => {
         this.post = post
-        let data = new DOMParser().parseFromString(this.post.content, 'text/xml')
+        this.post.spl
         document.getElementById('content-post').insertAdjacentHTML('afterbegin', this.post.content)
-        this.listPost = listPost.data
+        this.listPost = listPost.data.filter(item => item._id != id_post)
       }).catch(err => this.webService.alertMessage(err.message, 'error')).finally(() => this.webService.hideLoading())
     })
 

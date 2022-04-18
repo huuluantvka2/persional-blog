@@ -5,9 +5,10 @@
                 <div class="container-fluid">
                     <div class="row w-100">
                         <div class="col-md-4 col-sm-12 text-center">
-                            <h1 class="title"><button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
+                            <h1 class="title"><button (click)="gotoHome($event)" class="navbar-toggler" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                                    aria-label="Toggle navigation">
                                     <svg style="width: 20px;" fill="#ffffff" xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 448 512">
                                         <path
@@ -24,7 +25,8 @@
                                 id="navbarSupportedContent">
                                 <ul class="navbar-nav mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="/">Trang chủ</a>
+                                        <a (click)="gotoHome($event)" class="nav-link active" aria-current="page"
+                                            href="/">Trang chủ</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Bài viết hay</a>
